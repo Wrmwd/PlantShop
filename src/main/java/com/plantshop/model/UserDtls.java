@@ -19,4 +19,6 @@ public class UserDtls {
     private String password;
     @Column
     private String role;
+    @Column
+    private String mobileNumber;
 }
