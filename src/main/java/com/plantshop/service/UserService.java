@@ -1,8 +1,8 @@
 package com.plantshop.service;
 
-import com.plantshop.model.UserDtls;
+import com.plantshop.model.User;
 
 public interface UserService {
-    public UserDtls createUser(UserDtls user);
+    public User createUser(User user);
     public boolean checkEmail(String email);
 }

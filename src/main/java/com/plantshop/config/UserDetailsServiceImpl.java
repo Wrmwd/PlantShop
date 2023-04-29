@@ -1,6 +1,6 @@
 package com.plantshop.config;
 
-import com.plantshop.model.UserDtls;
+import com.plantshop.model.User;
 import com.plantshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepo;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserDtls user = userRepo.findByEmail(email);
+        User user = userRepo.findByEmail(email);
         if(user!=null){
             return new CustomUserDetails(user);
         }

@@ -1,15 +1,13 @@
 package com.plantshop.controller;
 
-import com.plantshop.model.UserDtls;
+import com.plantshop.model.User;
 import com.plantshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpSession;
-import javax.swing.text.html.parser.Entity;
 import java.security.Principal;
 
 @Controller
@@ -22,7 +20,7 @@ public class UserController {
     @ModelAttribute
     private void userDetails(Model m, Principal p){
         String email = p.getName();
-        UserDtls user = userRepo.findByEmail(email);
+        User user = userRepo.findByEmail(email);
         m.addAttribute("user", user);
     }
     @GetMapping("/")
@@ -36,11 +34,11 @@ public class UserController {
     @PostMapping("/updatePassword")
     public String changePassword(Principal p, @RequestParam("oldPass") String oldPass, @RequestParam("newPass") String newPass, HttpSession session){
        String email = p.getName();
-       UserDtls loginUser = userRepo.findByEmail(email);
+       User loginUser = userRepo.findByEmail(email);
         boolean f = passwordEncoder.matches(oldPass, loginUser.getPassword());
         if(f){
            loginUser.setPassword(passwordEncoder.encode(newPass));
-           UserDtls updatePasswordUser = userRepo.save(loginUser);
+           User updatePasswordUser = userRepo.save(loginUser);
            if(updatePasswordUser!=null){
                session.setAttribute("msg", "Password Change Successful");
            }
