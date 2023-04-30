@@ -1,7 +1,6 @@
 package com.plantshop.controller;
 
 import javax.servlet.http.HttpSession;
-
 import com.plantshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +21,7 @@ public class HomeController {
     private UserRepository userRepo;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
     @ModelAttribute
     private void userDetails(Model m, Principal p){
        if(p!=null){
