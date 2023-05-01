@@ -16,6 +16,8 @@ public class Product {
     @Column
     private String description;
     @Column
+    private String image;
+    @Column
     private double price;
     @Column
     private int quantity;
@@ -50,10 +52,17 @@ public class Product {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
+    }
 
-    public Product(String name, String description, Double price, int quantity){
+    public Product(String name, String description, Double price, int quantity, String image){
         this.name = name;
         this.description = description;
+        this.image=image;
         this.price = price;
         this.quantity = quantity;
     }

@@ -10,9 +10,9 @@
           crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Цветочный магазин</a>
+        <a class="navbar-brand" href="/">Plant Shop</a>
         <button class="navbar-toggler" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -47,6 +47,12 @@
                             <label>Описание</label>
                             <input type="text" name="description" class="form-control">
                         </div>
+
+                        <div class="container mb-3 p-0">
+                                <label class="form-label">Изображение</label>
+                                <input class="form-control" type="file" id="formFile" name="image">
+                        </div>
+
                         <div class="mb-3">
                             <label>В наличии</label>
                             <input type="text" name="quantity" class="form-control">
@@ -56,14 +62,12 @@
                             <input type="text" name="price" class="form-control">
                         </div>
 
-                        <button class="btn btn-primary col-md-12">Submit</button>
+                        <button class="btn btn-success col-md-12">Подтвердить</button>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

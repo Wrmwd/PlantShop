@@ -7,12 +7,15 @@
 </head>
 <body>
 <section>
-    <h1>User Home Page</h1>
-    <h1>First Name: [[${user.firstName}]]</h1>
-    <h1>Last Name: [[${user.lastName}]]</h1>
-    <h1>Email: [[${user.email}]]</h1>
-    <a href="/user/editProfile">Edit Profile</a>
-    <a href="/logout">Logout</a>
+    <center>
+        <h3>Мой Аккаунт</h3>
+        <h3>Имя: [[${user.firstName}]]</h3>
+        <h3>Фамилия: [[${user.lastName}]]</h3>
+        <h3>Email: [[${user.email}]]</h3>
+        <h3>Номер Телефона: [[${user.mobileNumber}]]</h3>
+    <a class="btn btn-secondary" href="/user/editProfile" role="button">Изменить профиль</a>
+    <a class="btn btn-secondary" href="/logout" role="button">Выход</a>
+    </center>
 </section>
 </body>
 </html>
