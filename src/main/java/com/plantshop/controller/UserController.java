@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
-import java.security.Security;
 
 @Controller
 @RequestMapping("/user/")
@@ -37,19 +36,24 @@ public class UserController {
             return "user/edit_profile";
     }
     @PostMapping("/updateProfile")
-    public String editProfile(Model model, Authentication authentication, @RequestParam String firstName, @RequestParam String lastName,
+    public String editProfile(Model model, Authentication authentication, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String password,
                                HttpSession session, String email, String mobileNumber) throws IOException {
         org.springframework.security.core.Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         email = auth.getName();
         User user = userRepo.findByEmail(email);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setMobileNumber(mobileNumber);
+        boolean f = passwordEncoder.matches(password, user.getPassword());
+        if(f) {
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setMobileNumber(mobileNumber);
 
-        userRepo.save(user);
+            userRepo.save(user);
 
-        model.addAttribute("user", user);
-        session.setAttribute("msg", "Изменения сохранены.");
+            model.addAttribute("user", user);
+            session.setAttribute("msg", "Изменения сохранены");
+        }else{
+            session.setAttribute("msg", "Неверный пароль");
+        }
         return "redirect:/user/editProfile";
     }
 
