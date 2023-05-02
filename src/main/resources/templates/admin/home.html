@@ -3,24 +3,30 @@
       th:fragment="Layout(content)">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Admin Home Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js">
 </head>
 
 <body class="bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand" >Plant Shop</a>
+        <a class="navbar-brand">Plant Shop</a>
 
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-expanded="false">Администратор</button>
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+                    data-toggle="dropdown" aria-expanded="false">Администратор
+            </button>
             <ul class="dropdown-menu dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <li><a class="dropdown-item active" href="#">Товары</a></li>
-                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
                 <li><a class="dropdown-item" href="/logout">Выход</a></li>
             </ul>
         </div>
@@ -28,10 +34,16 @@
     </div>
 </nav>
 <section>
+    <div th:if=${session.msg}>
+        <div class="alert alert-success" role="alert" th:text="${session.msg}">
+        </div>
+        <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+    </div>
     <div class="container">
         <div class="card">
             <div class="card-block">
-                <table class="table table-success table-striped table-hover table-bordered border-secondary mt-1 caption-top" style="text-align: center">
+                <table class="table table-success table-striped table-hover table-bordered border-secondary mt-1 caption-top"
+                       style="text-align: center">
                     <caption>Список товаров</caption>
                     <thead class="thead-light">
                     <tr>
@@ -50,10 +62,12 @@
                         <td th:text="${product.id}"></td>
                         <td th:text="${product.name}"></td>
                         <td th:src="${product.image}" img class="rounded mx-auto d-block"></td>
-                        <td th:text="${product.quantity}"></td>
                         <td th:text="${product.description}"></td>
+                        <td th:text="${product.quantity}"></td>
                         <td th:text="${product.price}"></td>
-                    </tr>
+                        <td>
+                            <a class="btn btn-danger" th:text="Удалить" th:href="'/admin/?method=delete&id='+${product.getId()}">Удалить</a>
+                        </td>
                     </tbody>
                 </table>
             </div>
@@ -69,6 +83,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{static/main.js}" src="../static/main.js"></script>
 </section>
 </body>
 </html>

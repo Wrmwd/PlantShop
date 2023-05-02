@@ -47,13 +47,13 @@ public class HomeController {
         System.out.println(user);
         boolean f = userService.checkEmail(user.getEmail());
         if (f) {
-            session.setAttribute("msg","User with this email already exists");
+            session.setAttribute("msg","Пользователь с таким email уже существует");
         } else {
             User userDtls = userService.createUser(user);
             if (userDtls != null) {
-                session.setAttribute("msg","Register successfully");
+                session.setAttribute("msg","Регистрация прошла успешно");
             } else {
-                session.setAttribute("msg","Something went wrong on server");
+                session.setAttribute("msg","Ошибка на сервере");
             }
         }
             return "redirect:/register";
@@ -75,7 +75,7 @@ public class HomeController {
             return "redirect:/loadResetPassword/" + user.getId();
         }
         else{
-            session.setAttribute("msg","invalid email & mobile number");
+            session.setAttribute("msg","Неправильный email или номер телефона");
             return "forgot_password";
         }
     }
@@ -86,7 +86,7 @@ public class HomeController {
         user.setPassword(encryptPsw);
         User updateUser = userRepo.save(user);
                 if(updateUser!=null){
-                    session.setAttribute("msg", "Password Change Successfully");
+                    session.setAttribute("msg", "Новый пароль принят");
                 }
         return "redirect:/loadForgotPassword";
     }

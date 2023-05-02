@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User editUser(User user){
+    public User editProfile(User user){
         user.setFirstName(user.getFirstName());
         user.setLastName(user.getLastName());
         user.setMobileNumber(user.getMobileNumber());

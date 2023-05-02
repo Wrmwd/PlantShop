@@ -71,12 +71,12 @@ public class UserController {
            loginUser.setPassword(passwordEncoder.encode(newPass));
            User updatePasswordUser = userRepo.save(loginUser);
            if(updatePasswordUser!=null){
-               session.setAttribute("msg", "Password Change Successful");
+               session.setAttribute("msg", "Новый пароль принят");
            } else{
-               session.setAttribute("msg", "Something went wrong on server");
+               session.setAttribute("msg", "Ошибка на сервере");
            }
         } else{
-            session.setAttribute("msg", "Old password is incorrect");
+            session.setAttribute("msg", "Неверный старый пароль");
         }
         return "redirect:/user/changPass";
     }

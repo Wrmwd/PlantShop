@@ -19,10 +19,18 @@ public class ProductController {
     @Autowired
     private ProductService productService;
     @GetMapping("/")
-    public String getAllProducts(Model model){
-        List<Product> products = productService.getAllProducts();
-        model.addAttribute("products", products);
-        return "admin/home";
+    public String getAllProducts(Model model, @RequestParam(name="method",required = false) String method,
+                                 @RequestParam(name = "id", required = false) Long id, HttpSession session){
+
+        if(method!=null && id!=null && method.equals("delete")){
+            System.out.println("Deleting Product by Id: "+id);
+            productService.deleteProductById(id);
+            session.setAttribute("msg", "Товар успешно удален.");
+            model.addAttribute("products", productService.getAllProducts());
+            return "redirect:/admin/";
+        }
+        model.addAttribute("products", productService.getAllProducts());
+        return "/admin/home";
     }
 
     @GetMapping("/addNewProduct")
@@ -41,4 +49,23 @@ public class ProductController {
         }
         return "redirect:/admin/addNewProduct";
     }
+    /*
+    @GetMapping("/editProduct/{id}")
+    public String editProduct(@PathVariable Long id, Model m){
+        Product product = productService.getProductById(id);
+        m.addAttribute("product", product);
+        return "edit_product";
+    }
+    @PostMapping("/updateProduct")
+    public String editProduct(@ModelAttribute Product product, HttpSession session){
+        productService.saveProduct(product);
+        session.setAttribute("msg", "Изменения сохранены");
+        return "redirect:/admin/home";
+    }
+     @GetMapping("/deleteProd/{id}")
+    public String deleteProduct(@PathVariable("id") Long id, HttpSession session){
+         productService.deleteProductById(id);
+         return "redirect:/admin/home";
+    }
+    */
 }
