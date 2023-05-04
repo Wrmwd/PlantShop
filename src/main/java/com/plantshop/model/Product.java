@@ -22,6 +22,17 @@ public class Product {
     @Column
     private int quantity;
 
+    public Product() {
+    }
+
+    public Product(String name, String description, String image, double price, int quantity) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public Long getId() {
         return id;
     }
@@ -59,12 +70,5 @@ public class Product {
         this.image = image;
     }
 
-    public Product(String name, String description, Double price, int quantity, String image){
-        this.name = name;
-        this.description = description;
-        this.image=image;
-        this.price = price;
-        this.quantity = quantity;
-    }
-    public Product(){}
+
 }

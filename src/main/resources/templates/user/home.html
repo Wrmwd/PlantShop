@@ -2,20 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       th:replace="base::layout(~{::section})">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>User Home Page</title>
+    <style>
+        * {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .btn-primary {
+            color: #fff3d6
+        }
+
+        .btn-primary:hover {
+            color: #fff3d6
+        }
+    </style>
 </head>
 <body>
 <section>
-    <center>
-        <h3>Мой Аккаунт</h3>
-        <h3>Имя: [[${user.firstName}]]</h3>
-        <h3>Фамилия: [[${user.lastName}]]</h3>
-        <h3>Email: [[${user.email}]]</h3>
-        <h3>Номер Телефона: [[${user.mobileNumber}]]</h3>
-    <a class="btn btn-secondary" href="/user/editProfile" role="button">Изменить профиль</a>
-    <a class="btn btn-secondary" href="/logout" role="button">Выход</a>
-    </center>
+    <div class="position-relative">
+        <div class="position-absolute top-0 start-50 translate-middle-x">
+            <center><h3 style="margin: 5%">Мой Аккаунт</h3></center>
+            <div class="card" style="width: 28rem; margin-top: 5%">
+                <div class="card-body">
+                    <h4 class="card-subtitle mb-1 text-muted">Пользователь</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Имя: [[${user.firstName}]]</li>
+                        <li class="list-group-item">Фамилия: [[${user.lastName}]]</li>
+                        <li class="list-group-item">Email: [[${user.email}]]</li>
+                        <li class="list-group-item">Номер Телефона: [[${user.mobileNumber}]]</li>
+                    </ul>
+                    <center>
+                    <a class="btn btn-secondary" href="/user/editProfile" role="button">Изменить профиль</a>
+                    <a th:href="@{/user/deleteUser}" style="margin: 10px 0" class="btn btn-danger">Удалить профиль</a>
+                    <a class="btn btn-secondary" href="/logout" role="button">Выход</a>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 </body>
 </html>

@@ -66,7 +66,8 @@
                         <td th:text="${product.quantity}"></td>
                         <td th:text="${product.price}"></td>
                         <td>
-                            <a class="btn btn-danger" th:text="Удалить" th:href="'/admin/?method=delete&id='+${product.getId()}">Удалить</a>
+                            <a class="btn btn-sm btn-secondary" th:href="'/admin/'+${product.getId()}+'/edit'">Изменить</a>
+                            <a class="btn btn-sm btn-danger" th:href="'/admin/?method=delete&id='+${product.getId()}">Удалить</a>
                         </td>
                     </tbody>
                 </table>

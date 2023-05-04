@@ -3,11 +3,38 @@
       th:replace="base::layout(~{::section})">
 <head>
     <meta charset="UTF-8">
-    <title>Index Page</title>
+    <title>Products Page</title>
 </head>
 <body>
 <section>
-    <h1>Index</h1>
+    <center>
+        <h2 style="margin: 1%">Каталог</h2>
+    </center>
+    <div class="row">
+        <div class="col-md-6" th:each="product: ${products}">
+            <div class="card mb-3" style="width: 30rem; margin-left: 10%">
+                <!-- <img th:src="${product.image}" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h3 class="card-title">[[${product.name}]]</h3>
+                    <p class="card-text">[[${product.description}]]</p>
+                    <p class="card-text">[[${product.price}]] BYN</p>
+
+                    <th:block th:if="${user==NULL}">
+                        <ul>
+                            <a href="signin" class="btn btn-secondary">В корзину</a>
+                        </ul>
+                    </th:block>
+
+                    <th:block th:if="${user!=NULL}">
+                        <ul>
+                            <a th:href="@{/user/cart/{id}(id=${product.id})}" class="btn btn-secondary">В корзину</a>
+                        </ul>
+                    </th:block>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 </body>
 </html>

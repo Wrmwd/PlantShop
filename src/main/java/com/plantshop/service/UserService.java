@@ -6,4 +6,5 @@ public interface UserService {
     public User createUser(User user);
     public User editProfile(User user);
     public boolean checkEmail(String email);
+    public String deleteUser(String email);
 }
