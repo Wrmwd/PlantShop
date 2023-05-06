@@ -8,17 +8,17 @@
 <body>
 <section>
     <center>
-        <h2 style="margin: 1%">Каталог</h2>
+        <h3 style="margin: 1%">Каталог</h3>
     </center>
-    <div class="row" style=" margin-right: 8%; align-content: center">
+    <div class="row row-cols-3" style=" margin-right: 8%; align-content: center">
         <div class="col-md-4" th:each="product: ${products}">
-            <div class="card mb-3" style="width: 27rem; margin-left: 15%">
-                <!-- <img th:src="${product.image}" class="card-img-top" alt="..."> -->
+            <div class="card border-success mb-3" style="width: 25rem; margin-left: 15%">
+                <img class="card-img-top" th:src="@{/images/{name}(name=${product.image})}" height="250" width="250">
                 <div class="card-body">
                     <h3 class="card-title">[[${product.name}]]</h3>
                     <p class="card-text">[[${product.description}]]</p>
                     <p class="card-text">[[${product.price}]] BYN</p>
-
+<!--
                     <th:block th:if="${user==NULL}">
                         <ul>
                             <a href="signin" class="btn btn-secondary">В корзину</a>
@@ -30,7 +30,7 @@
                             <a th:href="@{/user/cart/{id}(id=${product.id})}" class="btn btn-secondary">В корзину</a>
                         </ul>
                     </th:block>
-
+-->
                 </div>
             </div>
         </div>

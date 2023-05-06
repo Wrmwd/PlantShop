@@ -1,6 +1,5 @@
 package com.plantshop.controller;
 
-import com.plantshop.model.Product;
 import com.plantshop.model.User;
 import com.plantshop.repository.UserRepository;
 import com.plantshop.service.ProductService;
