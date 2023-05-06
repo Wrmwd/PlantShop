@@ -1,7 +1,9 @@
 package com.plantshop.controller;
 
+import com.plantshop.model.Product;
 import com.plantshop.model.User;
 import com.plantshop.repository.UserRepository;
+import com.plantshop.service.ProductService;
 import com.plantshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ public class UserController {
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
     @ModelAttribute
     private void userDetails(Model m, Principal p) {
@@ -33,7 +37,13 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "/index";
+    }
+
+    @GetMapping("/profile")
+    public String profile() {
         return "user/home";
     }
 
@@ -108,5 +118,8 @@ public class UserController {
         }
         return "redirect:/user/changPass";
     }
-
+    @GetMapping("/cart")
+    public String cart() {
+        return "user/cart";
+    }
 }
